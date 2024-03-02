@@ -13,7 +13,11 @@ public class MyFirstScript : MonoBehaviour
     bool _isTrue = true;
     */
 
+    Camera _camera;
+
+    [SerializeField]
     private int _counter = 0;
+    [SerializeField] private int _counterPerClick = 1;
 
     // Start is called before the first frame update
     private void Start()
@@ -29,7 +33,7 @@ public class MyFirstScript : MonoBehaviour
 
     public void OnMuffinClicked() 
     {
-        _counter = _counter + 1;
+        _counter = _counter + _counterPerClick;
         Debug.Log(_counter);
     }
 
