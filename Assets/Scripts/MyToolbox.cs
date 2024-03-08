@@ -4,13 +4,13 @@ using UnityEngine;
 
 public static class MyToolbox
 {
-    public static Vector2 GetRandomVector2(float x1, float x2, float y1, float y2) 
+    public static Vector2 GetRandomVector2(float _x1, float _x2, float _y1, float _y2) 
     {
         // x -150 180
         // y -150 150
         Vector2 value = new Vector2();
-        value.x = Random.Range(x1, x2);
-        value.y = Random.Range(y1, y2);
+        value.x = Random.Range(_x1, _x2);
+        value.y = Random.Range(_y1, _y2);
         return value;
     }
 }
