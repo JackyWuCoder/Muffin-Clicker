@@ -24,9 +24,9 @@ public class MyFirstScript : MonoBehaviour
     [SerializeField] private int _muffinsPerClick = 1;
     [SerializeField] private float _critChance = 0.01f;
 
-    [SerializeField] private float _pulseDistance = 1.0f;
-    [SerializeField] private float _pulseSpeed = 1.0f;
-    [SerializeField] private float _pulseOffset = 0;
+    [SerializeField] private float _waveAmplitude = 1f;
+    [SerializeField] private float _waveSpeed = 1f;
+    [SerializeField] private float _waveOffset = 0;
 
     // Start is called before the first frame update
     private void Start()
@@ -38,22 +38,18 @@ public class MyFirstScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(Time.time);
-        Debug.Log(Mathf.Sin(Time.time));
+
+        // Rotate
         Vector3 rotation = new Vector3();
         rotation.z = _spinSpeed * Time.deltaTime;
-        //transform.Rotate(rotation);
         _spinLight1.Rotate(rotation);
         _spinLight2.Rotate(rotation);
-        Vector3 pulse = new Vector3();
-        pulse.x = (_pulseDistance*Mathf.Sin(_pulseSpeed*Time.time) + _pulseOffset) * Time.deltaTime;
-        pulse.y = (_pulseDistance*Mathf.Sin(_pulseSpeed*Time.time) + _pulseOffset) * Time.deltaTime;
-        pulse.z = _spinLight1.transform.localScale.z;
-        _spinLight1.transform.localScale = pulse;
-        pulse.z = _spinLight2.transform.localScale.z;
-        _spinLight1.transform.localScale = pulse;
 
-
+        // Wave
+        float wave = Mathf.Sin(Time.time * _waveSpeed) * _waveAmplitude + _waveOffset;
+        Vector3 waveScale = new Vector3(wave, wave, wave);
+        _spinLight1.transform.localScale = waveScale;
+        _spinLight2.transform.localScale = waveScale;
     }
 
     public void OnMuffinClicked() 
