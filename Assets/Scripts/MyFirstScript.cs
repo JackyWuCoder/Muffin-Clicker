@@ -13,7 +13,10 @@ public class MyFirstScript : MonoBehaviour
     string _text = "$U#)U$O@J$O#@JsaD";
     bool _isTrue = true;
     */
-
+    [SerializeField]
+    private float _spinSpeed = 360;
+    [SerializeField]
+    private Transform _spinLight1, _spinLight2;
     [SerializeField]
     private TextMeshProUGUI _totalMuffinsText;
     [SerializeField]
@@ -31,7 +34,11 @@ public class MyFirstScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-       
+        Vector3 rotation = new Vector3();
+        rotation.z = _spinSpeed * Time.deltaTime;
+        //transform.Rotate(rotation);
+        _spinLight1.Rotate(rotation);
+        _spinLight2.Rotate(rotation);
     }
 
     public void OnMuffinClicked() 
