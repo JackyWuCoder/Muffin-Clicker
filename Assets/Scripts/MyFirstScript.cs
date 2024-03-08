@@ -16,14 +16,13 @@ public class MyFirstScript : MonoBehaviour
     [SerializeField]
     private float _spinSpeed = 360;
     [SerializeField]
-    private Transform _spinLight1, _spinLight2;
-    [SerializeField]
     private TextMeshProUGUI _totalMuffinsText;
     [SerializeField]
     private int _counter = 0;
     [SerializeField] private int _muffinsPerClick = 1;
     [SerializeField] private float _critChance = 0.01f;
 
+    [SerializeField] private Transform[] _spinLights;
     [SerializeField] private float _waveAmplitude = 1f;
     [SerializeField] private float _waveSpeed = 1f;
     [SerializeField] private float _waveOffset = 0;
@@ -38,18 +37,17 @@ public class MyFirstScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         // Rotate
         Vector3 rotation = new Vector3();
         rotation.z = _spinSpeed * Time.deltaTime;
-        _spinLight1.Rotate(rotation);
-        _spinLight2.Rotate(rotation);
+        _spinLights[0].Rotate(rotation);
+        _spinLights[1].Rotate(rotation);
 
         // Wave
         float wave = Mathf.Sin(Time.time * _waveSpeed) * _waveAmplitude + _waveOffset;
         Vector3 waveScale = new Vector3(wave, wave, wave);
-        _spinLight1.transform.localScale = waveScale;
-        _spinLight2.transform.localScale = waveScale;
+        _spinLights[0].transform.localScale = waveScale;
+        _spinLights[1].transform.localScale = waveScale;
     }
 
     public void OnMuffinClicked() 
