@@ -12,6 +12,8 @@ public class MyFirstScript : MonoBehaviour
     private int _counter = 0;
     [SerializeField] 
     private float _critChance = 0.01f;
+    [SerializeField]
+    private float _x1 = -150, _x2 = 180 , _y1 = -150, _y2 = 150;
 
     [SerializeField] private GameObject _textRewardPrefab;
 
@@ -24,6 +26,7 @@ public class MyFirstScript : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _totalMuffinsText;
     [SerializeField] private int _muffinsPerClick = 1;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -70,7 +73,7 @@ public class MyFirstScript : MonoBehaviour
         UpdateTotalMuffins();
         Debug.Log(_counter);
         GameObject textRewardClone = Instantiate(_textRewardPrefab, transform);
-        Vector2 randomVector = MyToolbox.GetRandomVector2();
+        Vector2 randomVector = MyToolbox.GetRandomVector2(_x1, _x2, _y1, _y2);
         textRewardClone.transform.localPosition = randomVector;
     }
 
